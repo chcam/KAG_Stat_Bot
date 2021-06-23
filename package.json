@@ -1,0 +1,20 @@
+{
+  "name": "kag_stat_bot",
+  "version": "1.0.0",
+  "description": "Discord bot interacting with the KAG stats API",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "keywords": [
+    "bot",
+    "kag"
+  ],
+  "author": "chcam",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "eris": "^0.15.1",
+    "express": "^4.17.1"
+  }
+}
