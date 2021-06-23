@@ -24,19 +24,19 @@ client.once("read", () => {
 client.login(token);
 
 // on message
-client.on("message", (message) => {
+client.on("message", async (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-  // remove args from command body
   const args = message.content.slice(prefix.length).trim().split(/ +/);
-  const command = args.shift().toLowerCase();
+  const commandName = args.shift().toLowerCase();
 
   // if no command, return
-  if (!client.commands.has(command)) return;
 
-  // execute commands
+  if (!client.commands.has(commandName)) return;
+  const command = client.commands.get(commandName);
+
   try {
-    client.commands.get(command).execute(message, args);
+    command.execute(message, args);
   } catch (error) {
     console.error(error);
     message.reply("there was an error trying to execute that command!");
