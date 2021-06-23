@@ -2,9 +2,10 @@
   "name": "kag_stat_bot",
   "version": "1.0.0",
   "description": "Discord bot interacting with the KAG stats API",
-  "main": "index.js",
+  "main": "./src/bot.js",
   "scripts": {
-    "test": "npm test"
+    "start": "node ./src/bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "bot",
@@ -14,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "eris": "^0.15.1",
+    "discord.js": "^12.5.3",
     "express": "^4.17.1"
   }
 }
