@@ -6,15 +6,15 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
 // read only javascript command files
-const commandFiles = fs
-  .readdirSync("./src/commands")
-  .filter((file) => file.endsWith(".js"));
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  // set a new item in the Collection
-  // with the key as the command name and the value as the exported module
-  client.commands.set(command.name, command);
+const commandFolders = fs.readdirSync("./src/commands");
+for (const folder of commandFolders) {
+  let commandFiles = fs
+    .readdirSync(`./src/commands/${folder}`)
+    .filter((file) => file.endsWith(".js"));
+  for (const file of commandFiles) {
+    let command = require(`./commands/${folder}/${file}`);
+    client.commands.set(command.name, command);
+  }
 }
 
 // startup bot
@@ -33,6 +33,7 @@ client.on("message", async (message) => {
   // if no command, return
 
   if (!client.commands.has(commandName)) return;
+
   const command = client.commands.get(commandName);
 
   try {
